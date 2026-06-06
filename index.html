@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Desk — 통합 리서치 대시보드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e14; --panel:#11161f; --panel-2:#161c27; --line:#2c3645;
+    --ink:#f0f4f9; --ink-dim:#c0cad8; --ink-faint:#8b97a8;
+    --up:#3fb950; --down:#f85149; --flat:#8b98a9;
+    --accent:#e8b339; --accent-2:#58a6ff; --risk:#f0883e;
+    --mono:'JetBrains Mono',monospace; --sans:'IBM Plex Sans KR',sans-serif; --display:'Fraunces',serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(circle at 15% -10%,rgba(88,166,255,.06),transparent 40%),
+      radial-gradient(circle at 90% 0%,rgba(232,179,57,.05),transparent 35%);
+    min-height:100vh}
+  .wrap{max-width:1400px;margin:0 auto;padding:32px 28px 64px}
+
+  /* Header */
+  header{display:flex;align-items:flex-end;justify-content:space-between;
+    border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:28px;flex-wrap:wrap;gap:16px}
+  .brand{display:flex;flex-direction:column;gap:4px}
+  .brand h1{font-family:var(--display);font-weight:900;font-size:34px;letter-spacing:-.02em;line-height:1}
+  .brand .sub{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.18em;text-transform:uppercase}
+  .stamp{font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-align:right;line-height:1.7}
+  .stamp .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--up);
+    margin-right:6px;box-shadow:0 0 8px var(--up);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+  /* 2-tier grid */
+  .desk{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media(max-width:980px){.desk{grid-template-columns:1fr}}
+  .tier{min-width:0;animation:rise .6s cubic-bezier(.2,.7,.3,1) backwards}
+  .tier:nth-child(2){animation-delay:.12s}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+  .tier-head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+  .tier-head .idx{font-family:var(--mono);font-size:12px;color:var(--ink-faint)}
+  .tier-head h2{font-family:var(--display);font-weight:600;font-size:21px;letter-spacing:-.01em}
+  .tier-head .tag{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+    color:var(--ink-faint);border:1px solid var(--line);padding:3px 8px;border-radius:4px;text-transform:uppercase}
+  .macro-toggle{display:flex;gap:4px;margin-left:8px}
+  .mt-btn{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-faint);
+    background:transparent;border:1px solid var(--line);border-radius:6px;padding:4px 10px;
+    cursor:pointer;transition:all .15s}
+  .mt-btn:hover{color:var(--ink-dim);border-color:var(--ink-faint)}
+  .mt-btn.active{color:var(--accent);border-color:var(--accent);background:rgba(232,179,57,.08)}
+  .macro-region.hidden{display:none}
+  .macro-print-label{display:none}  /* 화면에서는 숨김, 인쇄에서만 표시 */
+
+  /* Cards */
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:18px 18px 16px;margin-bottom:14px}
+  .card-t{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-faint);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .card-t::before{content:"";width:5px;height:5px;background:var(--accent);border-radius:50%}
+
+  /* Regime hero */
+  .regime{background:linear-gradient(135deg,var(--panel-2),var(--panel));position:relative;overflow:hidden}
+  .regime::after{content:"";position:absolute;top:-40%;right:-10%;width:220px;height:220px;
+    background:radial-gradient(circle,rgba(240,136,62,.12),transparent 70%);pointer-events:none}
+  .regime .label{font-family:var(--display);font-weight:900;font-size:30px;letter-spacing:-.02em;line-height:1.1}
+  .regime .meta{display:flex;gap:18px;margin:10px 0 14px;flex-wrap:wrap}
+  .regime .meta b{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--accent)}
+  .regime .meta span{font-size:12px;color:var(--ink-dim)}
+  .regime p{font-size:14px;color:var(--ink);margin-top:4px;font-weight:400}
+  .regime .counter{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);
+    font-size:13px;color:var(--ink-dim);line-height:1.65}
+  .regime .counter b{color:var(--accent);font-weight:500}
+
+  /* Metric rows */
+  .rows{display:flex;flex-direction:column;gap:2px}
+  .row{display:grid;grid-template-columns:1fr auto auto;align-items:baseline;gap:12px;
+    padding:7px 0;border-bottom:1px solid rgba(34,43,56,.5)}
+  .row:last-child{border-bottom:0}
+  .row .nm{font-size:13px;color:var(--ink);font-weight:400}
+  .row .vl{font-family:var(--mono);font-size:14px;font-weight:500;text-align:right;color:var(--ink)}
+  .row .dt{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);min-width:64px;text-align:right}
+  .dir{font-family:var(--mono);font-size:13px;margin-left:6px}
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--flat)}
+  .flag{font-family:var(--mono);font-size:9px;background:rgba(248,81,73,.15);color:var(--down);
+    padding:2px 6px;border-radius:3px;margin-left:8px;letter-spacing:.05em}
+  .note-line{font-size:13px;color:var(--ink-dim);margin-top:10px;font-style:italic}
+
+  /* Events / news list */
+  .ev{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(44,54,69,.5);font-size:13px}
+  .ev:last-child{border-bottom:0}
+  .ev .src{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);white-space:nowrap;padding-top:2px}
+  .ev .tt{color:var(--ink);flex:1;font-weight:400}
+
+  /* Stock cards */
+  .stk{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px;overflow:hidden}
+  .stk-h{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--panel-2);
+    border-bottom:1px solid var(--line);cursor:pointer;user-select:none}
+  .stk-h .tk{font-family:var(--mono);font-weight:700;font-size:16px;letter-spacing:.02em}
+  .stk-h .nm{font-size:12px;color:var(--ink-faint)}
+  .stk-h .px{margin-left:auto;font-family:var(--mono);font-weight:500;font-size:15px;text-align:right}
+  .stk-h .ch{font-family:var(--mono);font-size:12px}
+  .stk-h .caret{color:var(--ink-faint);font-size:11px;transition:transform .25s;font-family:var(--mono)}
+  .stk.open .caret{transform:rotate(90deg)}
+  .stk-b{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .stk.open .stk-b{max-height:1400px}
+  .stk-b-in{padding:14px 16px}
+  .kv{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+  @media(max-width:560px){.kv{grid-template-columns:repeat(2,1fr)}}
+  .kv .k{font-family:var(--mono);font-size:9px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em}
+  .kv .v{font-family:var(--mono);font-size:13px;font-weight:500;margin-top:3px}
+  .seg{margin-top:12px}
+  .seg-t{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-bottom:7px}
+  .pill{display:inline-block;font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:4px;margin-left:8px}
+  .pos{background:rgba(63,185,80,.15);color:var(--up)}
+  .neg{background:rgba(248,81,73,.15);color:var(--down)}
+  .mix{background:rgba(232,179,57,.15);color:var(--accent)}
+  /* Consensus */
+  .cons{margin-top:12px;padding:14px;background:rgba(88,166,255,.05);
+    border:1px solid rgba(88,166,255,.18);border-radius:8px}
+  .cons-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+  @media(max-width:560px){.cons-row{grid-template-columns:repeat(2,1fr)}}
+  .cons-cell .k{font-family:var(--mono);font-size:9px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em}
+  .cons-cell .v{font-family:var(--mono);font-size:13px;font-weight:500;margin-top:3px;color:var(--ink)}
+  .cons-up{color:var(--up)} .cons-down{color:var(--down)}
+  .cons-meta{font-family:var(--mono);font-size:11px;color:var(--ink-dim);margin-top:10px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  .cons-dist{margin-top:10px;display:flex;height:10px;border-radius:5px;overflow:hidden;background:rgba(34,43,56,.4)}
+  .cons-dist span{display:block;height:100%}
+  .cons-dist .d-sb{background:#1a9943}
+  .cons-dist .d-b{background:#3fb950}
+  .cons-dist .d-h{background:#8b98a9}
+  .cons-dist .d-s{background:#e07b6a}
+  .cons-dist .d-ss{background:#f85149}
+  .cons-legend{display:flex;gap:10px;margin-top:6px;font-family:var(--mono);font-size:10px;color:var(--ink-dim);flex-wrap:wrap}
+  .cons-legend i{font-style:normal}
+  .cons-disclaim{font-size:11px;color:var(--ink-faint);font-style:italic;margin-top:10px;line-height:1.55}
+
+  .risk-li{font-size:13px;color:var(--ink);padding:5px 0 5px 16px;position:relative;line-height:1.6}
+  .risk-li::before{content:"▸";position:absolute;left:0;color:var(--risk);font-size:11px;top:7px}
+  .fl{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);padding:3px 0}
+  .fl b{color:var(--accent-2);font-weight:500;margin-right:8px}
+  .summary{font-size:13.5px;color:var(--ink);margin-top:12px;padding-top:12px;
+    border-top:1px solid var(--line);line-height:1.65;font-weight:400}
+
+  /* states */
+  .state{padding:40px;text-align:center;color:var(--ink-faint);font-family:var(--mono);font-size:13px}
+  .disclaimer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:11px;color:var(--ink-faint);font-family:var(--mono);text-align:center;letter-spacing:.03em}
+
+  /* PDF/인쇄 버튼 */
+  .pdf-btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-dim);
+    background:transparent;border:1px solid var(--line);border-radius:6px;padding:6px 12px;
+    cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px;margin-top:6px}
+  .pdf-btn:hover{color:var(--accent);border-color:var(--accent)}
+
+  /* ────────── 인쇄(PDF) 전용 라이트 모드 ────────── */
+  @media print{
+    @page{size:A4;margin:14mm 12mm}
+    html,body{background:#fff!important;color:#1a1a1a!important;
+      font-size:10.5pt;line-height:1.5}
+    body{background-image:none!important}
+    .wrap{max-width:none;padding:0}
+    .pdf-btn,.stamp .dot,.macro-toggle{display:none!important}
+    .stamp{color:#555!important}
+
+    /* 인쇄 시 두 매크로 region 모두 표시 */
+    .macro-region.hidden{display:block!important}
+    .macro-print-label{display:block!important;color:#a07700!important;
+      border-bottom:1px solid #d8dce4!important}
+    #macro-kr{margin-top:18px;page-break-before:auto;break-before:auto}
+
+    /* 단일 컬럼 + 위→아래 흐름 */
+    .desk{display:block!important}
+    .tier{break-inside:auto;page-break-inside:auto}
+    .tier:nth-child(2){margin-top:14px}
+
+    /* 카드는 가능하면 한 페이지에 모이게 */
+    .card,.stk{background:#fff!important;border:1px solid #d0d4dc!important;
+      box-shadow:none!important;break-inside:avoid;page-break-inside:avoid;
+      margin-bottom:10px!important;padding:12px 14px!important}
+    .regime{background:#faf8f3!important}
+    .regime::after{display:none}
+
+    /* 모든 종목 펼침 + 헤더 색 정리 */
+    .stk-h{background:#f5f6f8!important;border-bottom:1px solid #d0d4dc!important;
+      cursor:default!important}
+    .stk .stk-b{max-height:none!important}
+    .stk .caret{display:none}
+
+    /* 텍스트 색 정규화 */
+    h1,h2,.regime .label,.row .nm,.row .vl,.ev .tt,.risk-li,.summary,
+    .regime p,.regime .counter,.note-line,.fl,.kv .v{color:#1a1a1a!important}
+    .brand .sub,.tier-head .idx,.tier-head .tag,.card-t,.seg-t,.kv .k,
+    .row .dt,.ev .src,.fl,.disclaimer{color:#666!important}
+    .regime .counter b,.regime .meta b{color:#a07700!important}
+    .fl b{color:#1d4ed8!important}
+
+    /* 색상 표시는 보존(▲▼) */
+    .up{color:#1a7a32!important}
+    .down{color:#b3261e!important}
+    .flag{background:#fde7e5!important;color:#b3261e!important}
+    .pill.pos{background:#e7f4e8!important;color:#1a7a32!important}
+    .pill.neg{background:#fde7e5!important;color:#b3261e!important}
+    .pill.mix{background:#fbf2dc!important;color:#a07700!important}
+
+    /* 구분선·dashed border 색 보정 */
+    .row,.ev,.regime .counter,.summary,.stk-h,header,.disclaimer{
+      border-color:#d8dce4!important}
+
+    /* 애니메이션 끔 */
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1>Investment Desk</h1>
+      <div class="sub">Macro Regime · Equity Research</div>
+    </div>
+    <div class="stamp">
+      <div><span class="dot"></span><span id="status">데이터 로딩 중</span></div>
+      <div id="stamp-time">—</div>
+      <button class="pdf-btn" onclick="window.print()" title="브라우저 인쇄 → 'PDF로 저장' 선택">
+        <span>📄</span><span>PDF 저장</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="desk">
+    <!-- TIER 1: MACRO -->
+    <section class="tier">
+      <div class="tier-head">
+        <span class="idx">01</span><h2>매크로 국면</h2>
+        <div class="macro-toggle">
+          <button class="mt-btn active" data-region="us" onclick="switchMacro('us')">🇺🇸 미국</button>
+          <button class="mt-btn" data-region="kr" onclick="switchMacro('kr')">🇰🇷 한국</button>
+        </div>
+        <span class="tag">Top-down</span>
+      </div>
+      <div id="macro-us" class="macro-region"><div class="state">불러오는 중…</div></div>
+      <div id="macro-kr" class="macro-region hidden"><div class="state">불러오는 중…</div></div>
+    </section>
+
+    <!-- TIER 2: EQUITY -->
+    <section class="tier">
+      <div class="tier-head">
+        <span class="idx">02</span><h2>종목 리서치</h2>
+        <span class="tag">Bottom-up</span>
+      </div>
+      <div id="stocks"><div class="state">불러오는 중…</div></div>
+    </section>
+  </div>
+
+  <div class="disclaimer">
+    정보 제공용 리서치 대시보드 · 투자 자문이 아니며 모든 판단과 책임은 사용자 본인에게 있습니다
+  </div>
+</div>
+
+<script>
+// ── 데이터 로딩 (라이브 전환 시 이 두 함수만 교체) ──────────────
+const SOURCES = { macro: "data/macro.json", macro_kr: "data/macro_kr.json", stocks: "data/stocks.json" };
+async function loadJSON(url){
+  const r = await fetch(url, {cache:"no-store"});
+  if(!r.ok) throw new Error(url+" "+r.status);
+  return r.json();
+}
+
+// ── 헬퍼 ──────────────────────────────────────────────────
+const dirClass = d => d==="▲"?"up":d==="▼"?"down":"flat";
+const esc = s => String(s??"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function sentClass(s){ if(/긍정/.test(s))return"pos"; if(/부정/.test(s))return"neg"; return"mix"; }
+
+// 통화 prefix + 큰 숫자(KRW) 간략화
+const currencySym = c => c==="KRW"?"₩":(c==="USD"?"$":esc(c||""));
+function fmtMarketCap(v, currency){
+  if(v==null||v==="N/A") return "N/A";
+  if(typeof v==="string" && !/^\d/.test(v)) return v;  // 이미 "3.05T" 같이 들어옴
+  const n = typeof v==="number" ? v : parseFloat(String(v).replace(/[^\d.]/g,""));
+  if(!n||isNaN(n)) return "N/A";
+  if(currency==="KRW"){
+    if(n>=1e12) return (n/1e12).toFixed(2)+"조";
+    if(n>=1e8)  return (n/1e8).toFixed(0)+"억";
+    return n.toLocaleString("ko-KR");
+  }
+  if(n>=1e12) return (n/1e12).toFixed(2)+"T";
+  if(n>=1e9)  return (n/1e9).toFixed(2)+"B";
+  if(n>=1e6)  return (n/1e6).toFixed(0)+"M";
+  return n.toLocaleString();
+}
+
+// ── 매크로 렌더 ───────────────────────────────────────────
+function renderMacro(d, targetId="macro-us", label=""){
+  const r = d.regime;
+  const rateRows = d.rates.map(x=>`
+    <div class="row"><span class="nm">${esc(x.label)}</span>
+      <span class="vl">${esc(x.value)}${x.unit?esc(x.unit):""}<span class="dir ${dirClass(x.direction)}">${x.direction||""}</span>${x.flag?`<span class="flag">${esc(x.flag)}</span>`:""}</span>
+      <span class="dt">${esc(x.date||"")}</span></div>`).join("");
+  const indRows = d.indicators.map(x=>`
+    <div class="row"><span class="nm">${esc(x.label)}</span>
+      <span class="vl">${esc(x.value)}${x.unit?esc(x.unit):""}<span class="dir ${dirClass(x.direction)}">${x.direction||""}</span></span>
+      <span class="dt">${esc(x.date||"")}</span></div>`).join("");
+  const geoReact = d.geopolitics.market_reaction.map(x=>`
+    <div class="row"><span class="nm">${esc(x.label)}</span>
+      <span class="vl">${esc(x.value)}${x.unit?esc(x.unit):""}<span class="dir ${dirClass(x.direction)}">${x.direction||""}</span></span>
+      <span class="dt">${esc(x.date||"")}</span></div>`).join("");
+  const geoEv = d.geopolitics.events.map(e=>`
+    <div class="ev"><span class="src">${esc(e.source)}</span><span class="tt">${esc(e.title)}</span><span class="src">${esc(e.date)}</span></div>`).join("");
+
+  const labelHtml = label ? `<div class="macro-print-label" style="font-family:var(--mono);font-size:12px;letter-spacing:.15em;color:var(--ink-faint);text-transform:uppercase;margin:18px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)">${label}</div>` : "";
+  document.getElementById(targetId).innerHTML = labelHtml + `
+    <div class="card regime">
+      <div class="card-t">시장 국면</div>
+      <div class="label">${esc(r.label)}</div>
+      <div class="meta"><b>신뢰도 ${esc(r.confidence)}</b><span>포지션 성격 · ${esc(r.posture)}</span></div>
+      <p>${esc(r.summary)}</p>
+      <div class="counter"><b>반대 시나리오 ·</b> ${esc(r.counter_scenario)}</div>
+    </div>
+    <div class="card"><div class="card-t">금리 · 국채</div><div class="rows">${rateRows}</div>
+      <div class="note-line">${esc(d.fed_consensus)}</div></div>
+    <div class="card"><div class="card-t">거시지표</div><div class="rows">${indRows}</div>
+      <div class="note-line">${esc(d.indicator_summary)}</div></div>
+    <div class="card"><div class="card-t">지정학 · 시장 반응</div><div class="rows">${geoReact}</div>
+      <div style="margin-top:12px">${geoEv}</div>
+      <div class="note-line">${esc(d.geopolitics.signal)}</div></div>`;
+}
+
+// ── 종목 렌더 ─────────────────────────────────────────────
+function renderStocks(d){
+  const html = d.stocks.map((s,i)=>{
+    const s0 = s.snapshot, chCls = parseFloat(s0.change_pct)>=0?"up":"down";
+    const curSym = currencySym(s0.currency);
+    const fmtPrice = v => {
+      if(v==null||v==="N/A") return "N/A";
+      const n = typeof v==="number"?v:parseFloat(String(v).replace(/,/g,""));
+      return isNaN(n) ? esc(v) : n.toLocaleString("ko-KR");
+    };
+    const kv = [
+      ["시총", fmtMarketCap(s0.market_cap, s0.currency)],
+      ["PER", esc(s0.pe)],
+      ["PBR", esc(s0.pb)],
+      ["52주", esc(s0.range_52w)]
+    ].map(([k,v])=>`<div><div class="k">${k}</div><div class="v">${v}</div></div>`).join("");
+    const fund = s.fundamentals.map(f=>`
+      <div class="row"><span class="nm">${esc(f.label)}</span>
+        <span class="vl">${esc(f.value)}<span class="dir ${dirClass(f.direction)}">${f.direction||""}</span></span>
+        <span class="dt"></span></div>`).join("");
+    const fil = s.filings.map(f=>`<div class="fl"><b>${esc(f.form)} ${esc(f.date)}</b>${esc(f.note)}</div>`).join("");
+    const news = s.news.items.map(n=>`
+      <div class="ev"><span class="src">${esc(n.source)}</span><span class="tt">${esc(n.title)}</span><span class="src">${esc(n.date)}</span></div>`).join("");
+
+    // Analyst consensus (선택 필드)
+    let consensus = "";
+    if(s.consensus){
+      const c = s.consensus;
+      const cur = currencySym(c.currency);
+      const fmt = v => (v==null||v==="")?"N/A":(typeof v==="number"?v.toLocaleString("ko-KR",{maximumFractionDigits:2}):esc(v));
+      const up = typeof c.upside_pct==="number" ? c.upside_pct : null;
+      const upTxt = up==null?"N/A":(up>=0?"+":"")+up.toFixed(2)+"%";
+      const upCls = up==null?"flat":(up>=0?"cons-up":"cons-down");
+      const d = c.distribution || {};
+      const total = (d.strong_buy||0)+(d.buy||0)+(d.hold||0)+(d.sell||0)+(d.strong_sell||0);
+      const pct = n => total?Math.max(0,(n||0)/total*100):0;
+      const recKey = c.recommendation_key ? c.recommendation_key.toUpperCase().replace("_"," ") : "—";
+      const recMean = c.recommendation_mean!=null ? c.recommendation_mean.toFixed(2) : "—";
+      consensus = `
+        <div class="seg"><div class="seg-t">애널리스트 컨센서스 (12개월)</div>
+          <div class="cons">
+            <div class="cons-row">
+              <div class="cons-cell"><div class="k">평균 목표가</div>
+                <div class="v">${cur}${fmt(c.target_mean)}<span class="dir ${upCls}" style="margin-left:6px">${upTxt}</span></div></div>
+              <div class="cons-cell"><div class="k">중앙값</div>
+                <div class="v">${cur}${fmt(c.target_median)}</div></div>
+              <div class="cons-cell"><div class="k">최고가</div>
+                <div class="v">${cur}${fmt(c.target_high)}</div></div>
+              <div class="cons-cell"><div class="k">최저가</div>
+                <div class="v">${cur}${fmt(c.target_low)}</div></div>
+            </div>
+            <div class="cons-meta">
+              <span>분석가 ${c.num_analysts||"?"}명 · 평균 추천 ${recMean} (${recKey})</span>
+              <span>현재가 ${cur}${fmt(c.current_price)}${d.period?` · 분포 기준 ${esc(d.period)}`:""}</span>
+            </div>
+            ${total ? `
+              <div class="cons-dist" title="Strong Buy ${d.strong_buy} / Buy ${d.buy} / Hold ${d.hold} / Sell ${d.sell} / Strong Sell ${d.strong_sell}">
+                <span class="d-sb" style="width:${pct(d.strong_buy)}%"></span>
+                <span class="d-b" style="width:${pct(d.buy)}%"></span>
+                <span class="d-h" style="width:${pct(d.hold)}%"></span>
+                <span class="d-s" style="width:${pct(d.sell)}%"></span>
+                <span class="d-ss" style="width:${pct(d.strong_sell)}%"></span>
+              </div>
+              <div class="cons-legend">
+                <i style="color:#1a9943">■ Strong Buy ${d.strong_buy||0}</i>
+                <i style="color:#3fb950">■ Buy ${d.buy||0}</i>
+                <i style="color:#8b98a9">■ Hold ${d.hold||0}</i>
+                <i style="color:#e07b6a">■ Sell ${d.sell||0}</i>
+                <i style="color:#f85149">■ Strong Sell ${d.strong_sell||0}</i>
+              </div>` : ""}
+            <div class="cons-disclaim">※ 컨센서스는 분석가들의 의견 평균이며 1~3개월 가격 예측 아님.
+              12개월 시점의 합의값이고, high·low 차이(분산)가 클수록 의견이 갈리고 있음.</div>
+          </div></div>`;
+    }
+
+    const risks = s.risks.map(r=>`<div class="risk-li">${esc(r)}</div>`).join("");
+    return `
+    <div class="stk ${i===0?"open":""}">
+      <div class="stk-h" onclick="this.parentElement.classList.toggle('open')">
+        <span class="tk">${esc(s.ticker)}</span><span class="nm">${esc(s.name)}</span>
+        <span class="px">${curSym}${fmtPrice(s0.price)}
+          <span class="ch ${chCls}">${parseFloat(s0.change_pct)>=0&&!String(s0.change_pct).startsWith("+")?"+":""}${esc(s0.change_pct)}%</span></span>
+        <span class="caret">▸</span>
+      </div>
+      <div class="stk-b"><div class="stk-b-in">
+        <div class="kv">${kv}</div>
+        <div class="seg"><div class="seg-t">펀더멘털</div><div class="rows">${fund}</div></div>
+        <div class="seg"><div class="seg-t">최근 공시</div>${fil}</div>
+        <div class="seg"><div class="seg-t">뉴스 <span class="pill ${sentClass(s.news.sentiment)}">${esc(s.news.sentiment)}</span></div>${news}</div>
+        ${consensus}
+        <div class="seg"><div class="seg-t">리스크 플래그</div>${risks}</div>
+        <div class="summary">${esc(s.summary)}</div>
+      </div></div>
+    </div>`;
+  }).join("");
+  document.getElementById("stocks").innerHTML = html;
+}
+
+// ── 매크로 토글 ────────────────────────────────────────────
+let MACRO_CACHE = { us: null, kr: null };
+function switchMacro(region){
+  document.querySelectorAll(".mt-btn").forEach(b=>b.classList.toggle("active", b.dataset.region===region));
+  // 화면에서는 active region만 보이게 (두 region은 항상 DOM에 있음 → 인쇄에서 둘 다 보임)
+  document.getElementById("macro-us").classList.toggle("hidden", region!=="us");
+  document.getElementById("macro-kr").classList.toggle("hidden", region!=="kr");
+}
+
+// ── 부트 ──────────────────────────────────────────────────
+(async function(){
+  try{
+    const [macro_us, macro_kr, stocks] = await Promise.all([
+      loadJSON(SOURCES.macro).catch(()=>null),
+      loadJSON(SOURCES.macro_kr).catch(()=>null),
+      loadJSON(SOURCES.stocks),
+    ]);
+    MACRO_CACHE.us = macro_us; MACRO_CACHE.kr = macro_kr;
+    // 두 region 모두 미리 렌더링 (인쇄 시 둘 다 PDF에 들어가도록)
+    if(macro_us && macro_us.generated_at){
+      renderMacro(macro_us, "macro-us", "🇺🇸 미국 매크로");
+    } else {
+      document.getElementById("macro-us").innerHTML = `<div class="state">미국 매크로 데이터가 아직 없습니다.<br><br>"시장 방향 봐줘" 같이 호출하면 자동으로 채워집니다.</div>`;
+    }
+    if(macro_kr && macro_kr.generated_at){
+      renderMacro(macro_kr, "macro-kr", "🇰🇷 한국 매크로");
+    } else {
+      document.getElementById("macro-kr").innerHTML = `<div class="state">한국 매크로 데이터가 아직 없습니다.<br><br>"코스피 방향 봐줘" 같이 호출하면 자동으로 채워집니다.</div>`;
+    }
+    renderStocks(stocks);
+    const t = (macro_us && macro_us.generated_at) || (stocks && stocks.generated_at) || "";
+    document.getElementById("status").textContent = "데이터 동기화됨";
+    document.getElementById("stamp-time").textContent = t.replace("T"," ").slice(0,16);
+  }catch(e){
+    document.getElementById("status").textContent = "로드 실패";
+    const msg = `<div class="state">데이터를 불러오지 못했습니다.<br>${esc(e.message)}<br><br>로컬에서 file://로 열면 fetch가 차단됩니다.<br>같은 폴더에서 <b>python3 -m http.server</b> 로 실행하세요.</div>`;
+    document.getElementById("macro-us").innerHTML = msg;
+    document.getElementById("macro-kr").innerHTML = "";
+    document.getElementById("stocks").innerHTML = "";
+  }
+})();
+</script>
+</body>
+</html>

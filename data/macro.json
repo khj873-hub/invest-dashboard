@@ -1,0 +1,35 @@
+{
+  "generated_at": "2026-06-06T10:30:00+09:00",
+  "regime": {
+    "label": "중립 (완화 사이클 진행 중, 속도 조절 압력)",
+    "confidence": "중-하",
+    "posture": "중립",
+    "summary": "기준금리 하락 + 노동시장 안정으로 완화 기조 이어가나, 4월 CPI 재상승과 미·이란 무력 충돌이 인하 가속을 제동. 시장은 단기 충돌로 보고 VIX는 진정.",
+    "counter_scenario": "① 5월 CPI 둔화 + 호르무즈 평정 → 리스크온 가속. ② 인플레 지속 + 봉쇄 현실화 → 금리 재상승 + 리스크오프 확산. ③ AI 약세가 광범위 리스크오프로 번질 경우 VIX 급등."
+  },
+  "rates": [
+    { "label": "연방기금금리", "value": "3.63", "unit": "%", "direction": "▼", "date": "2026-05-01" },
+    { "label": "10년물 국채", "value": "4.47", "unit": "%", "direction": "▼", "date": "2026-06-04" },
+    { "label": "2년물 국채", "value": "4.05", "unit": "%", "direction": "▼", "date": "2026-06-04" },
+    { "label": "10Y-2Y 스프레드", "value": "0.38", "unit": "%p", "direction": "▼", "date": "2026-06-05", "flag": "정상화·축소" }
+  ],
+  "fed_consensus": "인하 사이클 진행 중, 4월 CPI 재상승으로 속도 조절 압력",
+  "indicators": [
+    { "label": "CPI(인플레)", "value": "332.41 (+0.64% MoM)", "unit": "", "direction": "▲", "date": "2026-04-01" },
+    { "label": "실업률", "value": "4.3", "unit": "%", "direction": "→", "date": "2026-05-01" }
+  ],
+  "indicator_summary": "인플레 재상승 + 고용 안정 — 연준 추가 인하 명분 약화",
+  "geopolitics": {
+    "market_reaction": [
+      { "label": "WTI 유가", "value": "95.96", "unit": "$", "direction": "▲", "date": "2026-06-01" },
+      { "label": "VIX", "value": "15.4", "direction": "▼", "date": "2026-06-04" }
+    ],
+    "events": [
+      { "title": "US strikes Iran radar sites after Iranian drone launch", "source": "Reuters", "date": "2026-06-05" },
+      { "title": "Iran drones toward Strait of Hormuz, CNN reports", "source": "Reuters", "date": "2026-06-05" },
+      { "title": "Trump vows quick end to Iran war (Wisconsin campaign)", "source": "Reuters", "date": "2026-06-05" },
+      { "title": "Witkoff·Kushner meet nuclear experts at national lab", "source": "Reuters", "date": "2026-06-05" }
+    ],
+    "signal": "유가 ▲5.3% (호르무즈 봉쇄 우려) vs VIX ▼ — 시장은 단기 충돌로 인식, 시스템 리스크 미반영"
+  }
+}

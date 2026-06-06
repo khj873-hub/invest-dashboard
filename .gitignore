@@ -1,0 +1,15 @@
+# 보안 — 키·환경 파일이 실수로 들어와도 차단
+.env
+.env.*
+*.key
+*secret*
+*token*
+*credentials*
+
+# macOS
+.DS_Store
+
+# 에디터 캐시
+.vscode/
+.idea/
+*.swp

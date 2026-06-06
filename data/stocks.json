@@ -1,0 +1,245 @@
+{
+  "generated_at": "2026-06-06T12:00:00+09:00",
+  "stocks": [
+    {
+      "ticker": "AMAT",
+      "name": "Applied Materials, Inc.",
+      "snapshot": {
+        "price": "453.01", "change_pct": "-9.71", "currency": "$",
+        "market_cap": "N/A", "pe": "53.89", "pb": "9.03",
+        "range_52w": "154.47 – 510.75", "date": "2026-06-05"
+      },
+      "fundamentals": [
+        { "label": "순이익률", "value": "24.67%", "direction": "→" },
+        { "label": "부채비율", "value": "0.32 (D/E) — 매우 양호", "direction": "→" },
+        { "label": "ROE", "value": "N/A", "direction": "→" },
+        { "label": "분기 매출 추세", "value": "10-Q 본문 미파싱", "direction": "→" }
+      ],
+      "filings": [
+        { "form": "10-Q", "date": "2026-05-21", "note": "회계 Q2 FY26 (4월 분기) — 회계연도 10월 종료" },
+        { "form": "8-K", "date": "2026-05-14", "note": "Q2 실적 발표 추정 (본문 미확인)" },
+        { "form": "8-K", "date": "2026-03-13", "note": "이벤트 (본문 미확인 — ASMPT NEXX 인수 관련 가능성)" },
+        { "form": "10-Q", "date": "2026-02-19", "note": "회계 Q1 FY26 (1월 분기)" },
+        { "form": "8-K", "date": "2026-02-12", "note": "이벤트 2건 (본문 미확인)" }
+      ],
+      "news": {
+        "sentiment": "혼조 (단기 셀오프 vs 중기 구조 호재)",
+        "items": [
+          { "title": "AMAT Deepens AI Chip Packaging Push — ASMPT NEXX 인수 완료, advanced packaging 확장", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "AMAT Continues Bull Run as Goldman Sachs Sees More Upside", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "Memory Chip Prices Will Make or Break DRAM ETF (사이클 호조)", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "Stock Indexes Plunge as Tech Stocks Get Dumped", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "Tech Weakness and Fed Rate Hike Speculation", "source": "Yahoo", "date": "2026-06-05" }
+        ]
+      },
+      "risks": [
+        "단기 급락 리스크: 직전일 -9.71% — 글로벌 칩 셀오프 직접 영향 (KLAC와 거의 동일 동조)",
+        "밸류 리스크: PER 54 — 여전히 높음 (단, KLAC PER 62보다 낮음)",
+        "위치 리스크: 52주 고점 -11.3% 근접",
+        "거시 리스크: Fed 인상 우려 + AI 약세 모멘텀 → 반도체 섹터 동반 압박",
+        "메모리 사이클 의존: HBM 수요 둔화 시 advanced packaging 모멘텀 약화",
+        "데이터 갭: 분기 매출 추세·세그먼트별 매출 자동 수집 누락"
+      ],
+      "summary": "단기는 KLAC와 동조 셀오프 -9.71%. 중기는 정반대 신호 — ASMPT NEXX 인수로 AI 패키징 확장 + 컨센서스 +12.84% upside + 분석가 85% 매수 지지(Strong Buy 영역). 부채비율 0.32로 KLAC 대비 재무 안전성 우월. 거시 안정 시점 확인 후 재평가 정당화 국면.",
+      "consensus": {
+        "target_mean": 511.17, "target_median": 521.0, "target_high": 575.0, "target_low": 358.0,
+        "currency": "USD", "num_analysts": 36,
+        "current_price": 453.01, "upside_pct": 12.84,
+        "recommendation_mean": 1.50, "recommendation_key": "strong_buy",
+        "distribution": { "period": "2026-06-01", "strong_buy": 12, "buy": 27, "hold": 7, "sell": 0, "strong_sell": 0 }
+      }
+    },
+    {
+      "ticker": "035420",
+      "name": "NAVER (네이버)",
+      "snapshot": {
+        "price": 255500, "change_pct": "-4.49", "currency": "KRW",
+        "market_cap": 38193369972736, "pe": "N/A", "pb": "N/A",
+        "range_52w": "186,300 – 304,000", "date": "2026-06-05"
+      },
+      "fundamentals": [
+        { "label": "분기 매출 추세", "value": "DART 본문 미파싱", "direction": "→" },
+        { "label": "순이익률", "value": "N/A (DART 사업보고서 필요)", "direction": "→" },
+        { "label": "ROE", "value": "N/A", "direction": "→" },
+        { "label": "부문별 매출", "value": "광고·커머스·핀테크·클라우드 별도 확인 필요", "direction": "→" }
+      ],
+      "filings": [
+        { "form": "기업설명회(IR) 개최 안내", "date": "2026-06-01", "note": "🔥 직전 +16% 폭등 시점과 일치" },
+        { "form": "기업지배구조보고서", "date": "2026-05-29", "note": "거버넌스 보고" },
+        { "form": "대규모기업집단현황공시(대표회사)", "date": "2026-05-28", "note": "그룹 구조" },
+        { "form": "대규모기업집단현황공시(동일인용)", "date": "2026-05-28", "note": "—" },
+        { "form": "임원·주요주주 특정증권 소유상황", "date": "2026-05-21", "note": "지분 변동 3건" },
+        { "form": "두나무 포괄적 주식교환 후 네이버파이낸셜 IPO 로드맵", "date": "2026-04-16", "note": "🔥 35.2조원 합산 밸류" }
+      ],
+      "news": {
+        "sentiment": "혼조 (양방향 충돌 — AI 호재 vs 차익실현)",
+        "items": [
+          { "title": "'엔비디아♥네이버' 6/1 +16.03% 폭등 (젠슨 황 효과)", "source": "iNews24", "date": "2026-06-01" },
+          { "title": "젠슨 황 효과 — 네이버 3거래일 +36% 급등 (AI 랠리 중심)", "source": "이데일리", "date": "2026-06-01" },
+          { "title": "NAVER — AI·쇼핑·스테이블코인 전략적 재평가 시점", "source": "헬로스톡", "date": "2026-05-31" },
+          { "title": "[특징주] NAVER, 부문별 사업 가치 재평가", "source": "뉴스TNT", "date": "2026-05-29" },
+          { "title": "두나무 + 네이버파이낸셜 포괄적 주식교환 (35.2조원)", "source": "한국정경신문", "date": "2026-05-19" }
+        ]
+      },
+      "risks": [
+        "차익실현 리스크: 3거래일 +36% 폭등 후 6/5 -4.49% (1차 조정 시작 가능)",
+        "거시 동조: 한국 리스크오프 (환율 1,528원·KOSPI -5.54%) → 추가 압박",
+        "AI 의존 narrative: 젠슨 황 효과는 단일 이벤트성, 지속성 검증 필요",
+        "핀테크 종속: 두나무·네이버파이낸셜 합병이 정책 변수에 노출 (코인입법 표류)",
+        "PER/PBR 결측: yfinance 미제공 — 밸류 정량 판단 어려움 (DART 본문 필수)",
+        "외국인 이탈 환경: KRW 약세 + 외인 매도 압박 시 대형주 직접 타격"
+      ],
+      "summary": "AI 재평가 모멘텀(▲▲) vs 한국 거시 리스크오프(▼) 정면 충돌. 3거래일 +36% 후 차익실현 진행 중이나 컨센서스는 12개월 +14% upside 지지. 두나무 합병·네이버파이낸셜 IPO 로드맵이 중장기 catalyst.",
+      "consensus": {
+        "target_mean": 292518.53, "target_median": 290000, "target_high": 350000, "target_low": 230000,
+        "currency": "KRW", "num_analysts": 27,
+        "current_price": 255500, "upside_pct": 14.49,
+        "recommendation_mean": 1.59, "recommendation_key": "buy"
+      }
+    },
+    {
+      "ticker": "KLAC",
+      "name": "KLA Corporation",
+      "snapshot": {
+        "price": "1929.20", "change_pct": "-9.47", "currency": "$",
+        "market_cap": "N/A", "pe": "62.05", "pb": "25.24",
+        "range_52w": "773.60 – 2156.69", "date": "2026-06-05"
+      },
+      "fundamentals": [
+        { "label": "순이익률", "value": "33.41%", "direction": "→" },
+        { "label": "부채비율", "value": "1.25 (D/E)", "direction": "→" },
+        { "label": "ROE", "value": "N/A", "direction": "→" },
+        { "label": "분기 매출 추세", "value": "10-Q 본문 미파싱", "direction": "→" }
+      ],
+      "filings": [
+        { "form": "8-K", "date": "2026-05-07", "note": "🔥 10:1 주식분할 + 배당 인상 + 2027 가이던스 연장" },
+        { "form": "10-Q", "date": "2026-04-30", "note": "회계 Q3 FY26 (3월 분기) 보고서" },
+        { "form": "8-K", "date": "2026-04-29", "note": "Q3 실적 발표 추정 (본문 미확인)" },
+        { "form": "8-K", "date": "2026-03-12", "note": "이벤트 (본문 미확인)" },
+        { "form": "8-K", "date": "2026-02-05", "note": "이벤트 (본문 미확인)" },
+        { "form": "10-Q", "date": "2026-01-30", "note": "회계 Q2 FY26 (12월 분기) 보고서" }
+      ],
+      "news": {
+        "sentiment": "혼조 (강한 양방향 충돌)",
+        "items": [
+          { "title": "KLA Split + Dividend Hike + 2027 Guidance vs Rich Valuation, AI Hopes", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "KLA Suffers a Larger Drop (-9.47%) Than the General Market", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "Entegris and KLA Stocks Trade Down — global chip selloff", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "KLA Stock's Look Into The Future — multi-year demand surge signaling", "source": "Yahoo", "date": "2026-06-04" },
+          { "title": "Stocks Tumble on Tech Weakness and Fed Rate Hike Speculation", "source": "Yahoo", "date": "2026-06-05" }
+        ]
+      },
+      "risks": [
+        "단기 급락 리스크: 직전일 -9.47% — 강한 호재 발표(분할·배당·가이던스) 직후의 폭락 = 거시가 호재 압도",
+        "밸류 리스크: PER 62 — Q4 FY26 실적 컨센서스 미달 시 멀티플 압축",
+        "컨센서스 역방향: 평균 목표가 $1,855 < 현재가 $1,929 (-3.84%) — 가격이 컨센서스를 앞섰음",
+        "위치 리스크: 52주 고점 -10.5% 근접 — 차익실현 트리거 가능",
+        "거시 리스크: AVGO 우려 + Fed 인상 우려 + AI 약세 모멘텀 → 반도체 섹터 광범위 압박",
+        "이벤트 리스크: KLA 회계연도 6월 종료 → 10-K + 가이던스 임박. 2027 가이던스 충족 여부 트리거",
+        "데이터 갭: 8-K 5건 본문 미파싱"
+      ],
+      "summary": "양방향 충돌 국면. 10:1 분할 + 배당 인상 + 2027 가이던스 연장 = 강한 구조 호재 / 직전일 -9.47% 급락 + 칩 셀오프 + 컨센서스 평균 < 현재가 = 단기 압박. 거시 노이즈가 자체 호재를 일시 압도. Q4 FY26 실적이 갈림길.",
+      "consensus": {
+        "target_mean": 1855.14, "target_median": 1900.0, "target_high": 2100.0, "target_low": 1500.0,
+        "currency": "USD", "num_analysts": 29,
+        "current_price": 1929.20, "upside_pct": -3.84,
+        "recommendation_mean": 1.93, "recommendation_key": "buy",
+        "distribution": { "period": "2026-06-01", "strong_buy": 10, "buy": 15, "hold": 11, "sell": 0, "strong_sell": 0 }
+      }
+    },
+    {
+      "ticker": "ON",
+      "name": "onsemi (ON Semiconductor Corp.)",
+      "snapshot": {
+        "price": "117.26", "change_pct": "-11.05", "currency": "$",
+        "market_cap": "N/A", "pe": "391.19", "pb": "2.84",
+        "range_52w": "44.56 – 134.92", "date": "2026-06-05"
+      },
+      "fundamentals": [
+        { "label": "순이익률", "value": "2.02%", "direction": "→" },
+        { "label": "부채비율", "value": "0.39 (D/E)", "direction": "→" },
+        { "label": "ROE", "value": "N/A", "direction": "→" },
+        { "label": "분기 매출 추세", "value": "10-Q 본문 미파싱", "direction": "→" }
+      ],
+      "filings": [
+        { "form": "8-K", "date": "2026-05-18", "note": "5월 8-K 클러스터 5건 중 #5 (본문 미확인)" },
+        { "form": "8-K", "date": "2026-05-12", "note": "5월 8-K 클러스터 5건 중 #4 (본문 미확인)" },
+        { "form": "8-K", "date": "2026-05-07", "note": "5월 8-K 클러스터 5건 중 #3 (본문 미확인)" },
+        { "form": "8-K", "date": "2026-05-06", "note": "5월 8-K 클러스터 5건 중 #2 (본문 미확인)" },
+        { "form": "10-Q", "date": "2026-05-04", "note": "회계 Q1 FY26 (3월 분기) 보고서" },
+        { "form": "8-K", "date": "2026-05-04", "note": "5월 8-K 클러스터 5건 중 #1 (본문 미확인)" }
+      ],
+      "news": {
+        "sentiment": "혼조 (양방향 narrative 충돌)",
+        "items": [
+          { "title": "Prediction: ON Semiconductor Could Be 2026's Big Tech Stock", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "How onsemi Is Winning in Renewable Energy Infrastructure (SiC + AI 전력)", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "Assessing ON Valuation After Sharp Momentum-Fueled Share Price Rally", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "Stocks Tumble on Tech Weakness and Fed Rate Hike Speculation", "source": "Yahoo", "date": "2026-06-05" }
+        ]
+      },
+      "risks": [
+        "모멘텀 리스크: 직전일 -11.05% 급락 — 트렌드 반전 vs 단발 노이즈 판가름 필요",
+        "밸류 리스크: PER 391 — EPS 정상화 실패 시 멀티플 압축 가능성 큼",
+        "이벤트 리스크: 5월 8-K 5건 클러스터 — 본문 직접 확인 필수",
+        "펀더멘털 리스크: 순이익률 2% — 회복 초기, EPS 가시성 낮음",
+        "거시 리스크: AI 약세 모멘텀 + 인플레 재상승 + 'Fed Rate Hike' 헤드라인 동반",
+        "데이터 갭: 분기 매출·세그먼트별(자동차/산업/SiC) 매출·가이던스 자동 수집 누락"
+      ],
+      "summary": "양방향 narrative 강한 충돌 국면. (긍정) 신재생·AI 전력 구조적 모멘텀 + 2025 바닥 대비 +163% / (부정) -11% 급락 + PER 391 + 5월 8-K 5건 + 거시 약세. 단방향 베팅 정당화 어려움. 10-Q + 8-K 본문 확인이 진입 전 필수.",
+      "consensus": {
+        "target_mean": 105.45, "target_median": 101.0, "target_high": 150.0, "target_low": 68.0,
+        "currency": "USD", "num_analysts": 29,
+        "current_price": 117.26, "upside_pct": -10.07,
+        "recommendation_mean": 2.18, "recommendation_key": "buy",
+        "distribution": { "period": "2026-06-01", "strong_buy": 5, "buy": 17, "hold": 21, "sell": 0, "strong_sell": 0 }
+      }
+    },
+    {
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "snapshot": {
+        "price": "307.34", "change_pct": "-1.25", "currency": "$",
+        "market_cap": "N/A", "pe": "40.87", "pb": "50.98",
+        "range_52w": "195.07 – 316.94", "date": "2026-06-05"
+      },
+      "fundamentals": [
+        { "label": "순이익률", "value": "26.92%", "direction": "→" },
+        { "label": "부채비율", "value": "1.35 (D/E)", "direction": "→" },
+        { "label": "ROE", "value": "N/A", "direction": "→" },
+        { "label": "분기 매출 추세", "value": "10-Q 본문 미파싱", "direction": "→" }
+      ],
+      "filings": [
+        { "form": "10-Q", "date": "2026-05-01", "note": "회계 Q2 FY26 (3월 분기) 보고서" },
+        { "form": "8-K", "date": "2026-04-30", "note": "Q2 실적 발표 추정 (본문 미확인)" },
+        { "form": "8-K", "date": "2026-04-20", "note": "이벤트 (본문 미확인)" },
+        { "form": "10-Q", "date": "2026-01-30", "note": "회계 Q1 FY26 (12월 분기) 보고서" }
+      ],
+      "news": {
+        "sentiment": "중립 ~ 약긍정, 이벤트 임박형 (WWDC 6/8)",
+        "items": [
+          { "title": "Apple Stock Nears All-Time High: Where Will It End The Year?", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "Big Week Ahead With AI Siri Expected at WWDC", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "Why June 8 Could Be a Huge Day for Apple Stock", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "Dow Jones Futures: Market Rally Faces First Real Test", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "AI Layoffs Already Have Surpassed Last Year's Total", "source": "Yahoo", "date": "2026-06-05" }
+        ]
+      },
+      "risks": [
+        "밸류에이션 부담: PER 40.87 · PBR 50.98 (역사·동종 대비 높음)",
+        "52주 고점 -3% 근접 — 추가 상승 여지 제한, 차익실현 트리거 가능",
+        "이벤트 리스크: 2026-06-08 WWDC (Siri AI 발표 — sell the news 위험)",
+        "거시 노이즈: AI 섹터 약세 + 인플레 재상승 → 고PER 압박",
+        "데이터 갭: 분기 매출 추세·ROE·세그먼트 매출 등 10-Q 본문 미파싱"
+      ],
+      "summary": "중립 ~ 약긍정 신호 우세하나 밸류 부담 + 고점 근접 + 6/8 WWDC 이벤트 리스크로 변동성 확대 구간. 단방향 베팅보다 이벤트 통과 후 재평가 정당화.",
+      "consensus": {
+        "target_mean": 310.51, "target_median": 310.0, "target_high": 400.0, "target_low": 215.0,
+        "currency": "USD", "num_analysts": 43,
+        "current_price": 307.34, "upside_pct": 1.03,
+        "recommendation_mean": 1.98, "recommendation_key": "buy",
+        "distribution": { "period": "2026-06-01", "strong_buy": 14, "buy": 24, "hold": 15, "sell": 2, "strong_sell": 0 }
+      }
+    }
+  ]
+}
