@@ -1,6 +1,55 @@
 {
-  "generated_at": "2026-06-06T12:00:00+09:00",
+  "generated_at": "2026-06-06T12:15:00+09:00",
   "stocks": [
+    {
+      "ticker": "TMO",
+      "name": "Thermo Fisher Scientific Inc.",
+      "snapshot": {
+        "price": "472.80", "change_pct": "-1.91", "currency": "$",
+        "market_cap": "N/A", "pe": "26.30", "pb": "4.08",
+        "range_52w": "385.46 – 643.99", "date": "2026-06-05"
+      },
+      "fundamentals": [
+        { "label": "순이익률", "value": "15.04%", "direction": "→" },
+        { "label": "부채비율", "value": "0.74 (D/E)", "direction": "→" },
+        { "label": "ROE", "value": "N/A", "direction": "→" },
+        { "label": "분기 세그먼트별 매출", "value": "10-Q 본문 미파싱 (Analytical/LSS/SDx/LP)", "direction": "→" }
+      ],
+      "filings": [
+        { "form": "10-K", "date": "2026-02-26", "note": "FY25 연차보고서 — 최근 10-K 있어 펀더멘털 신뢰도 우수" },
+        { "form": "10-Q", "date": "2026-05-01", "note": "회계 Q1 FY26 (3월 분기)" },
+        { "form": "8-K", "date": "2026-05-26", "note": "최근 이벤트 (본문 미확인)" },
+        { "form": "8-K", "date": "2026-04-23", "note": "Q1 실적 발표 추정" },
+        { "form": "8-K", "date": "2026-03-24", "note": "본문 미확인" },
+        { "form": "8-K", "date": "2026-02-12", "note": "본문 미확인" }
+      ],
+      "news": {
+        "sentiment": "혼조 (자체 호재 vs 분석가 하향)",
+        "items": [
+          { "title": "🔥 HSBC Downgrades TMO to Hold, lowers price target $670 → $540", "source": "Benzinga", "date": "2026-06-04" },
+          { "title": "AI-Enhanced Orbitrap Drug Discovery — Tribrid Apex + Excedion 신형 출시 (ASMS)", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "Bull Case For TMO Could Change Following AI-Enhanced Orbitrap Launches", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "Jim Cramer on Danaher: 'At These Prices, Clearly Overvalued' (헬스케어 섹터 톤 약화)", "source": "Yahoo", "date": "2026-06-05" },
+          { "title": "ICLR Earnings Reset · QuidelOrtho Respiratory Exposure (동종 부진)", "source": "Yahoo", "date": "2026-06-05" }
+        ]
+      },
+      "risks": [
+        "🔥 분석가 하향 리스크: HSBC Buy→Hold + PT -19% — 의견 분기 신호. Follow-on 점검 필요",
+        "헬스케어 섹터 톤 약화: Cramer Danaher overvalued 언급 — 동종 multiple 압박",
+        "52주 고점 -26.6% — 이미 깊은 조정 후 (추가 약세 시 trend 시작 가능)",
+        "Bull case 약화 우려: Orbitrap 신제품 매출 기여도 확인 전까지 단정 어려움",
+        "데이터 갭: 분기 세그먼트별 매출(Analytical/LSS/Specialty Diagnostics/Lab Products) 자동 수집 누락",
+        "거시 리스크: Fed 인상 우려는 헬스케어에 칩주보다 영향 작으나 0은 아님"
+      ],
+      "summary": "앞서 분석한 5종목과 매우 다른 결. (긍정) 칩 셀오프 무관(-1.91%) + 강한 컨센서스(+27.49% upside, SB 11) + Orbitrap 신제품 모멘텀 + 합리적 PER 26 / (부정) HSBC 하향(-19% PT) + 헬스케어 섹터 톤 약화 + 52주 고점 -26.6% 깊은 조정. HSBC 하향 follow-on 여부와 Orbitrap 매출 기여도가 갈림길.",
+      "consensus": {
+        "target_mean": 602.76, "target_median": 600.0, "target_high": 750.0, "target_low": 490.0,
+        "currency": "USD", "num_analysts": 25,
+        "current_price": 472.80, "upside_pct": 27.49,
+        "recommendation_mean": 1.48, "recommendation_key": "strong_buy",
+        "distribution": { "period": "2026-06-01", "strong_buy": 11, "buy": 18, "hold": 5, "sell": 0, "strong_sell": 0 }
+      }
+    },
     {
       "ticker": "AMAT",
       "name": "Applied Materials, Inc.",
