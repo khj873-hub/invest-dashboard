@@ -16,7 +16,7 @@
   "fed_consensus": "한은 7월 인상 가능성 — 신현송 총재 환율·물가·부동산 모든 면에서 인상 명분 시사",
   "indicators": [
     { "label": "CPI(인플레)", "value": "119.92 (+0.46% MoM)", "unit": "", "direction": "▲", "date": "2026-05-01" },
-    { "label": "실업률", "value": "데이터 결측", "unit": "", "direction": "→", "date": "—" },
+    { "label": "실업률", "value": "2.8", "unit": "% (계절조정)", "direction": "→", "date": "2026-05" },
     { "label": "경상수지", "value": "사상 최대 흑자 1,000억$ 돌파", "unit": "", "direction": "▲", "date": "2026-05-01" }
   ],
   "indicator_summary": "물가 압력 재상승(디스인플레 흐름 깨짐) + 경상흑자에도 환율 위기 = 외국인 자본 이탈 신호",
